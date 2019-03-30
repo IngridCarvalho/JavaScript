@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expenses and Revenues</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+</head>
+<body class="container">
+    <h1 class="text-center">Expenses and Revenues</h1>
+    
+    <form class="form">
+
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" class="form-control" required autofocus/>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <input type="text" id="description" class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label>Type Moviment:</label>
+                <select name="type" id="type" class="form-control">
+                    <option value="Credit">Credit</option>
+                    <option value="Debit">Debit</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="value">Value $:</label> 
+                <input type="number" id="value" class="form-control">
+            </div>
+            <button class="btn btn-success" type="submit" onclick="movement.adiciona()">Incluir</button>
+            <!-- /<button id="botaoImporta" class="btn btn-primary" type="button">Importar</button> -->
+    </form>
+    <br>
+
+   <div id="tableMovements"></div>
+
+</body>
+
+<script src="js/app/controllers/MovementController.js"></script>
+<script src="js/app/helpers/DateHelper.js"></script>
+<script src="js/app/models/Movement.js"></script>
+<script src="js/app/models/listMovements.js"></script>
+<script src="js/app/views/MovementsView.js"></script>
+<script>
+    var movement = new MovementController();
+</script>
+</html>
