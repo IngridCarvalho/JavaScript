@@ -34,7 +34,8 @@ class MovementsView {
             }).join('')}
         </tbody>
         <tfoot>
-            <tr colspan="3">
+            <tr>
+            <td colspan="3">TOTAL</td>
                 <td>${model.total}</td>
             </tr>
         </tfoot>

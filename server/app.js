@@ -3,27 +3,45 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
+var dataAtual = new Date();
+
+var dados = [
+  {
+    date: dataAtual, 
+    description: "Receita de vendas",
+    type: "Credit",
+    value: 100
+  },
+  {
+    date: dataAtual, 
+    description: "Saída referente a pagamento",
+    type: "Debit",
+    value: 100
+  }
+];
+
+//avoids the error of CORS
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use(bodyParser.json());
 
 app.get('/movements', function(req, res) {
-    var dados = [
-      {
-        date: "10-01-2019", 
-        description: "Receita de vendas",
-        type: "credit",
-        value: 100
-      },
-      {
-        date: "11-01-2019", 
-        description: "Saída referente a pagamento",
-        type: "debit",
-        value: 100
-      }
-    ];
-  
-    res.send(JSON.stringify(dados));
+    res.json(dados);
   });
 
-  app.listen(3000, function() {
-    console.log('Servidor rodando na porta 3000.');
+  app.post('/movements', function(req, res){
+    
+   console.log(req.body);
+   req.body.date = new Date(req.body.date.replace(/-/g,'/'));
+   dados.push(req.body);
+   res.status(200).json("Negociação recebida");
+  })
+  
+
+  app.listen(3030, function() {
+    console.log('Servidor rodando na porta 3030.');
   });
