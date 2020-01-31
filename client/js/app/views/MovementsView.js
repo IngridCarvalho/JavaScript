@@ -1,13 +1,13 @@
-class MovementsView {
+class MovementsView extends View{
     
-    constructor(elemento){
-        this._elemento = elemento;
+    constructor(element){
+        super(element);
     }
 
-    //performs the update of the each insertion in the table
-    update(model){
-        this._elemento.innerHTML = this.template(model);
-    }
+    // //performs the update of the each insertion in the table
+    // update(model){
+    //     this._elemento.innerHTML = this.template(model);
+    // }
 
     //template string of the table
     template(model){

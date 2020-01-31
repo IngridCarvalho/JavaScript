@@ -14,8 +14,6 @@ class DateHelper{
                     .map((item, indice) => {
                         return item-indice%2;
                     }));
-        
-        
     }
 
     static dateToText(info){

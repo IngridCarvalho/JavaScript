@@ -13,6 +13,9 @@ class MovementController{
 
         //this._movementService = new MovementService();
         this.loadMovements();
+
+        this._message = new Message();
+        this._messageView = new MessageView(document.querySelector('#message'));
     }
 
     //adds the movement in list of movements
