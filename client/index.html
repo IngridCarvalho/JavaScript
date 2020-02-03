@@ -34,7 +34,8 @@
             <label for="value">Value $:</label> 
             <input type="number" id="value" class="form-control">
         </div>
-        <button class="btn btn-success" type="submit" onclick="movement.adiciona()">Incluir</button>
+        <button class="btn btn-success" type="submit" onclick="movement.create()">Incluir</button>
+        <button class="btn btn-warning" type="button" onclick="movement.delete()">Apagar Movimentações</button>
         <!-- /<button id="botaoImporta" class="btn btn-primary" type="button">Importar</button> -->
     </form>
     <br>
@@ -46,12 +47,24 @@
 <script src="js/app/controllers/MovementController.js"></script>
 <script src="js/app/helpers/DateHelper.js"></script>
 <script src="js/app/models/Movement.js"></script>
-<script src="js/app/models/listMovements.js"></script>
+<script src="js/app/models/Message.js"></script>
+<script src="js/app/models/ListMovements.js"></script>
+<script src="js/app/views/View.js"></script>
 <script src="js/app/views/MovementsView.js"></script>
+<script src="js/app/views/MessageView.js"></script>
 <script src="js/app/services/HttpService.js"></script>
 <script src="js/app/services/MovementService.js"></script>
+<script src="js/app/services/ProxyFactory.js"></script>
 
 <script>
-    var movement = new MovementController();
+    let movement = new MovementController();
+//     let movement2 = new Proxy(new Movement(new Date(), 'teste', 1, 100),{ // example of proxy
+//         set: function(target, prop, value, receiver){
+//             console.log(`valor anterior: ${target[prop]}, novo valor: ${value}`);
+//             return Reflect.set(target, prop, value, receiver);
+//         }
+//     });
+//    movement2._description = 'Teste 3';
+//    movement2._value = '1000';
 </script>
 </html>

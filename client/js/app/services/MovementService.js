@@ -9,7 +9,7 @@ class MovementService{
                 .get('http://localhost:3030/movements')
                 .then(
                     movements => {
-                    return movements.map(objeto => new Movement(new Date(objeto.date), objeto.description, objeto.type, objeto.value));
+                        return movements.map(objeto => new Movement(new Date(objeto.date), objeto.description, objeto.type, objeto.value));
                     }
                 )
                 .catch(erro => {

@@ -1,11 +1,13 @@
-class listMovements{
+class ListMovements{
 
-    constructor(){
+    constructor(trap){
         this._listMovements = [];
+        this._trap = trap; //receive a function
     }
 
     add(movement){
         this._listMovements.push(movement);
+        //this._trap(this);
     }
 
     get movements(){
@@ -21,8 +23,13 @@ class listMovements{
                             sum -= m.value;
                         }
                         return sum;
-                }, 0);
-                    
+                }, 0);               
     }
+
+    clearList(){
+        this._listMovements = [];
+    }
+
+
 
 }
