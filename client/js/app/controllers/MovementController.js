@@ -6,25 +6,26 @@ class MovementController{
         this._typeMovement = document.getElementById('type');
         this._value = document.querySelector('#value');
 
-        //this._listMovement = new listMovements(model => this._movementsView.update(model));
-        //using Proxy
-
-        let self = this;
-        this._listMovement = ProxyFactory
-                                .create(new ListMovements(), ['add', 'clearList'], 
-                                (model) => this._movementsView.update(model));
-
         //instance the class MovementsView and passes the div for insert the table
         this._movementsView = new MovementsView(document.querySelector('#tableMovements'));
 
-        //this._movementService = new MovementService();
-        //this.loadMovements();
+        //using Proxy and Bind
+        this._listMovement = new Bind(
+            new ListMovements(),
+            this._movementsView,
+            'adiciona', 'esvazia'
+        );
 
-        this._message = ProxyFactory
-                            .create(new Message(), ['text'], 
-                            (model) => this._messageView.update(model));
-                            
         this._messageView = new MessageView(document.querySelector('#message'));
+        
+        this._message = new Bind(
+            new Message(),
+            this._messageView,
+            'text'
+        );
+
+        //this._movementService = new MovementService();
+        //this.loadMovements();                   
     }
 
     //adds the movement in list of movements

@@ -1,12 +1,12 @@
 class ProxyFactory{
     static create (object, props, action){
         return new Proxy(object, {
-            get: function(target, prop, receiver){
-                if(props.includes(prop) && typeof(target[prop]) == ProxyFactory._isFunction(target[prop])){
+            get(target, prop, receiver){
+                if(props.includes(prop) && ProxyFactory._isFunction(target[prop])){
                     return function(){
-                        console.log(`method '${prop} intercepted'`);
+                        console.log(`method '${prop}' intercepted'`);
 
-                        Reflect.apply(target[prop], target, arguments);
+                        let back = Reflect.apply(target[prop], target, arguments);
 
                         action(target);
                     }
@@ -14,11 +14,12 @@ class ProxyFactory{
                 return Reflect.get(target, prop, receiver);
             },
             set(target, prop, value, receiver){
+                let back = Reflect.set(target, prop, value, receiver);
                 if(props.includes(prop)){
                     target[prop] = value;
                     action(target);
                 }
-                return Reflect.set(target, prop, value, receiver);
+                return back;
             } 
         })
     }
