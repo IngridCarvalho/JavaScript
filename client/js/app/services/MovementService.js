@@ -1,4 +1,5 @@
 class MovementService{
+
     constructor(){
         this._http = new HttpService();
     }
@@ -7,15 +8,30 @@ class MovementService{
     getMovements(){
             return this._http
                 .get('http://localhost:3030/movements')
-                .then(
-                    movements => {
-                        return movements.map(objeto => new Movement(new Date(objeto.date), objeto.description, objeto.type, objeto.value));
+                .then(movements => {
+                        return movements.map(object => new Movement(object.id, new Date(object.date), object.description, object.type, object.value));
                     }
                 )
-                .catch(erro => {
-                    console.log(erro);
+                .catch(error => {
+                    console.log(error);
                     throw new('Não foi possível obter os movimentos');
-                })
+                });
+    }
+
+    addMovement(movement){
+        return this._http
+            .post('http://localhost:3030/movements', movement)
+            .then(teste => {
+                    return console.log(teste);
+            });
+    }
+
+    deleteMovement(id){
+        return this._http
+            .delete(`http://localhost:3030/movements/${id}`)
+            .then(teste => {
+                return console.log(teste);
+            });
     }
 
 

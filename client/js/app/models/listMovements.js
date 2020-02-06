@@ -10,6 +10,10 @@ class ListMovements{
         //this._trap(this);
     }
 
+    remove(id){
+        this._listMovements.splice(id, 1);
+    }
+
     get movements(){
         return [].concat(this._listMovements); //creates a copy of the array, which don't allow the original to be altered by return
     }
@@ -25,11 +29,4 @@ class ListMovements{
                         return sum;
                 }, 0);               
     }
-
-    clearList(){
-        this._listMovements = [];
-    }
-
-
-
 }

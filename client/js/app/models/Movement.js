@@ -1,10 +1,15 @@
 class Movement{
 
-    constructor(date, description, typeMovement, value){
+    constructor(id, date, description, typeMovement, value){
+        this._id = id;
         this._date = new Date(date.getTime());
         this._description = description;
         this._typeMovement = typeMovement;
         this._value = value;
+    }
+
+    get id(){
+        return this._id;
     }
 
     get date(){
